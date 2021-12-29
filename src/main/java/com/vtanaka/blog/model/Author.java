@@ -38,7 +38,7 @@ public class Author {
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "address_id", referencedColumnName = "id")
-  private StreetAddress address;
+  private Address address;
 
   @JsonIgnore
   @OneToMany(mappedBy = "author")

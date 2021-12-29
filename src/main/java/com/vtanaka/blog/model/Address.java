@@ -19,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class StreetAddress {
+public class Address {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class StreetAddress {
 
   private Long number;
 
-  private String complement;
+  private String detail;
 
   @JsonIgnore
   @OneToOne(mappedBy = "address")
