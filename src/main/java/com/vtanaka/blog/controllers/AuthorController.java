@@ -1,5 +1,6 @@
 package com.vtanaka.blog.controllers;
 
+import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.AUTHOR_ID_PARAM;
 import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.AUTHOR_RESOURCE;
 import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.AUTHOR_URI;
 
@@ -8,28 +9,34 @@ import com.vtanaka.blog.controllers.requests.AuthorCreateRequest;
 import com.vtanaka.blog.controllers.responses.AuthorCreationResponse;
 import com.vtanaka.blog.controllers.responses.AuthorResponse;
 import com.vtanaka.blog.services.author.AuthorService;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log4j2
 @RestController
 @RequestMapping(AUTHOR_RESOURCE)
-@RequiredArgsConstructor
 public class AuthorController implements AuthorApi {
 
   private final AuthorService authorService;
 
+  public AuthorController(AuthorService authorService) {
+    this.authorService = authorService;
+  }
+
   @Override
   @PostMapping
-  public AuthorCreationResponse create(AuthorCreateRequest request) {
+  public AuthorCreationResponse create(@RequestBody AuthorCreateRequest request) {
     return authorService.createAuthor(request);
   }
 
   @Override
   @GetMapping(AUTHOR_URI)
-  public AuthorResponse getById(Long id) {
+  public AuthorResponse getById(@PathVariable(AUTHOR_ID_PARAM) Long id) {
     return authorService.getAuthor(id);
   }
 }

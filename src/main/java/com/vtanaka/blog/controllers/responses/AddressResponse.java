@@ -1,15 +1,7 @@
 package com.vtanaka.blog.controllers.responses;
 
 import com.vtanaka.blog.models.Author;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@Builder
 public class AddressResponse {
 
   private Long id;
@@ -20,5 +12,36 @@ public class AddressResponse {
 
   private String detail;
 
-  private Author author;
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Long getNumber() {
+    return number;
+  }
+
+  public void setNumber(Long number) {
+    this.number = number;
+  }
+
+  public String getDetail() {
+    return detail;
+  }
+
+  public void setDetail(String detail) {
+    this.detail = detail;
+  }
+
 }
