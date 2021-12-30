@@ -1,5 +1,6 @@
-package com.vtanaka.blog.model;
+package com.vtanaka.blog.models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,14 +13,18 @@ import javax.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Article {
+public class Article implements Serializable {
+
+  static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

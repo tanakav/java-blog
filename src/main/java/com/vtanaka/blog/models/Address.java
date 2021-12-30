@@ -1,14 +1,12 @@
-package com.vtanaka.blog.model;
+package com.vtanaka.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.List;
-import javax.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,28 +17,26 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Author {
+public class Address implements Serializable {
+
+  static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonProperty("street_name")
   private String name;
 
-  private String cpf;
+  private Long number;
 
-  private String rg;
-
-  private String email;
-
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "address_id", referencedColumnName = "id")
-  private Address address;
+  private String detail;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "author")
-  private List<Article> articles;
+  @OneToOne(mappedBy = "address")
+  private Author author;
+
 }

@@ -1,9 +1,13 @@
 package com.vtanaka.blog.services.author;
 
+import static com.vtanaka.blog.exceptions.ErrorCode.USER_NOT_FOUND;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vtanaka.blog.controllers.requests.AuthorCreateRequest;
+import com.vtanaka.blog.controllers.responses.AuthorCreationResponse;
 import com.vtanaka.blog.controllers.responses.AuthorResponse;
-import com.vtanaka.blog.model.Address;
-import com.vtanaka.blog.model.Author;
+import com.vtanaka.blog.exceptions.ServiceException;
+import com.vtanaka.blog.models.Author;
 import com.vtanaka.blog.repositories.author.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,26 +18,20 @@ public class AuthorServiceImpl implements AuthorService {
 
   private final AuthorRepository authorRepository;
 
+  private final AuthorFactory authorFactory;
+
+  private final ObjectMapper mapper;
+
   @Override
-  public AuthorResponse createAuthor(AuthorCreateRequest request) {
-    Author createdAuthor = authorRepository.save(buildModel(request));
-    return AuthorResponse.builder().id(createdAuthor.getId()).build();
+  public AuthorCreationResponse createAuthor(AuthorCreateRequest request) {
+    Author createdAuthor = authorRepository.save(authorFactory.buildModel(request));
+    return new AuthorCreationResponse(createdAuthor.getId());
   }
 
-  private Author buildModel(AuthorCreateRequest request) {
-    final Address address =
-        Address.builder()
-            .name(request.getAddressName())
-            .number(request.getAddressNumber())
-            .detail(request.getAddressDetail())
-            .build();
-
-    return Author.builder()
-        .name(request.getName())
-        .cpf(request.getCpf())
-        .rg(request.getRg())
-        .email(request.getEmail())
-        .address(address)
-        .build();
+  @Override
+  public AuthorResponse getAuthor(Long id) {
+    Author author =
+        authorRepository.findById(id).orElseThrow(() -> new ServiceException(USER_NOT_FOUND, id));
+    return mapper.convertValue(author, AuthorResponse.class);
   }
 }

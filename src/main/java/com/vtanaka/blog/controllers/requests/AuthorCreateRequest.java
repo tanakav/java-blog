@@ -1,24 +1,28 @@
 package com.vtanaka.blog.controllers.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class AuthorCreateRequest {
 
-  private Long id;
+  @NotBlank private String name;
 
-  private String name;
+  @NotBlank private String cpf;
 
-  private String cpf;
+  @NotBlank private String rg;
 
-  private String rg;
+  @Email private String email;
 
-  private String email;
-
+  @NotBlank
   @JsonProperty("address_name")
   private String addressName;
 
+  @NotBlank
   @JsonProperty("address_number")
   private Long addressNumber;
 

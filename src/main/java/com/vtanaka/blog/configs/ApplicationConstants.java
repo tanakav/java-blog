@@ -1,4 +1,4 @@
-package com.vtanaka.blog;
+package com.vtanaka.blog.configs;
 
 import static lombok.AccessLevel.PRIVATE;
 
