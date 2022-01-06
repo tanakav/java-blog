@@ -1,6 +1,6 @@
 package com.vtanaka.blog.controllers;
 
-import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.AUTHOR_ID_PARAM;
+import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.PARAM_AUTHOR_ID;
 import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.AUTHOR_RESOURCE;
 import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.AUTHOR_URI;
 
@@ -36,7 +36,7 @@ public class AuthorController implements AuthorApi {
 
   @Override
   @GetMapping(AUTHOR_URI)
-  public AuthorResponse getById(@PathVariable(AUTHOR_ID_PARAM) Long id) {
+  public AuthorResponse getById(@PathVariable(PARAM_AUTHOR_ID) Long id) {
     return authorService.getAuthor(id);
   }
 }

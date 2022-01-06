@@ -1,6 +1,6 @@
 package com.vtanaka.blog.controllers.responses;
 
-import com.vtanaka.blog.models.Author;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class AddressResponse {
 
@@ -10,6 +10,7 @@ public class AddressResponse {
 
   private Long number;
 
+  @JsonInclude(JsonInclude.Include.NON_EMPTY)
   private String detail;
 
   public Long getId() {
@@ -43,5 +44,4 @@ public class AddressResponse {
   public void setDetail(String detail) {
     this.detail = detail;
   }
-
 }

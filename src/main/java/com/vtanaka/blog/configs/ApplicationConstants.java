@@ -8,11 +8,11 @@ public final class ApplicationConstants {
 
   public static final class AuthorResource {
 
-    public static final String AUTHOR_ID_PARAM = "author_id";
+    public static final String PARAM_AUTHOR_ID = "author_id";
 
     public static final String AUTHOR_RESOURCE = CONTEXT_PATH + "/authors";
 
-    public static final String AUTHOR_URI = "/{" + AUTHOR_ID_PARAM + "}";
+    public static final String AUTHOR_URI = "/{" + PARAM_AUTHOR_ID + "}";
 
     private AuthorResource() {}
   }

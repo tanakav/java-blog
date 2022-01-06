@@ -1,6 +1,7 @@
 package com.vtanaka.blog.controllers.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.Size;
 
 public class ArticleRequest {
 
@@ -10,6 +11,7 @@ public class ArticleRequest {
   private Long userId;
 
   @JsonProperty("short_description")
+  @Size(max = 100)
   private String shortDescription;
 
   private String content;
