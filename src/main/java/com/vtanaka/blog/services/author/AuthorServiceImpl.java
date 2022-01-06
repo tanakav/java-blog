@@ -2,7 +2,6 @@ package com.vtanaka.blog.services.author;
 
 import static com.vtanaka.blog.exceptions.ErrorCode.USER_NOT_FOUND;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vtanaka.blog.controllers.requests.AuthorCreateRequest;
 import com.vtanaka.blog.controllers.responses.AuthorCreationResponse;
 import com.vtanaka.blog.controllers.responses.AuthorResponse;
@@ -18,15 +17,9 @@ public class AuthorServiceImpl implements AuthorService {
 
   private final AuthorFactory authorFactory;
 
-  private final ObjectMapper mapper;
-
-  public AuthorServiceImpl(
-      AuthorRepository authorRepository,
-      AuthorFactory authorFactory,
-      ObjectMapper mapper) {
+  public AuthorServiceImpl(AuthorRepository authorRepository, AuthorFactory authorFactory) {
     this.authorRepository = authorRepository;
     this.authorFactory = authorFactory;
-    this.mapper = mapper;
   }
 
   @Override

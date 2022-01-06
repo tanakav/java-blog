@@ -22,6 +22,8 @@ public class Article implements Serializable {
 
   private String title;
 
+  private String shortDescription;
+
   private String content;
 
   private LocalDateTime createdAt;
@@ -45,9 +47,10 @@ public class Article implements Serializable {
     this.lastUpdate = LocalDateTime.now();
   }
 
-  public Article(Long id, String title, String content, Author author) {
+  public Article(Long id, String title, String shortDescription, String content, Author author) {
     this.id = id;
     this.title = title;
+    this.shortDescription = shortDescription;
     this.content = content;
     this.author = author;
   }
@@ -58,6 +61,10 @@ public class Article implements Serializable {
 
   public String getTitle() {
     return title;
+  }
+
+  public String getShortDescription() {
+    return shortDescription;
   }
 
   public String getContent() {
@@ -85,6 +92,8 @@ public class Article implements Serializable {
 
     private String title;
 
+    private String shortDescription;
+
     private String content;
 
     private Author author;
@@ -109,8 +118,13 @@ public class Article implements Serializable {
       return this;
     }
 
+    public ArticleBuilder shortDescription(String shortDescription) {
+      this.shortDescription = shortDescription;
+      return this;
+    }
+
     public Article build() {
-      return new Article(id, title, content, author);
+      return new Article(id, title, shortDescription, content, author);
     }
   }
 }
