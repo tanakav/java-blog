@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 public class ArticleResponse {
 
+  private AuthorBaseResponse author;
+
   private Long id;
 
   private String title;
@@ -32,6 +34,16 @@ public class ArticleResponse {
     this.content = article.getContent();
     this.createdAt = article.getCreatedAt().toString();
     this.lastUpdate = article.getLastUpdate().toString();
+    this.author = new AuthorBaseResponse(article.getAuthor());
+  }
+
+  public AuthorBaseResponse getAuthor() {
+    return author;
+  }
+
+  public ArticleResponse setAuthor(AuthorBaseResponse author) {
+    this.author = author;
+    return this;
   }
 
   public ArticleResponse setId(Long id) {

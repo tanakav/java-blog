@@ -22,16 +22,12 @@ public class ArticleFactoryImpl implements ArticleFactory {
 
   @Override
   public Article buildArticleFrom(ArticleRequest request) {
-    Author author =
-        authorRepository
-            .findById(request.getUserId())
-            .orElseThrow(() -> new ServiceException(USER_NOT_FOUND, request.getUserId()));
 
     return Article.builder()
         .title(request.getTitle())
         .content(request.getContent())
         .shortDescription(request.getShortDescription())
-        .author(author)
+        .author(findByAuthorId(request.getUserId()))
         .build();
   }
 
@@ -42,7 +38,14 @@ public class ArticleFactoryImpl implements ArticleFactory {
 
   @Override
   public ArticleResponse buildResponseFrom(Article article) {
+
     return new ArticleResponse(article);
+  }
+
+  private Author findByAuthorId(Long authorId) {
+    return authorRepository
+            .findById(authorId)
+            .orElseThrow(() -> new ServiceException(USER_NOT_FOUND, authorId));
   }
 
 
