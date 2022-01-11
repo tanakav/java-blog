@@ -15,9 +15,9 @@ public class ArticleResponse {
 
   private String content;
 
-  private LocalDateTime createdAt;
+  private String createdAt;
 
-  private LocalDateTime lastUpdate;
+  private String lastUpdate;
 
   public Long getId() {
     return id;
@@ -30,8 +30,8 @@ public class ArticleResponse {
     this.title = article.getTitle();
     this.shortDescription = article.getShortDescription();
     this.content = article.getContent();
-    this.createdAt = article.getCreatedAt();
-    this.lastUpdate = article.getLastUpdate();
+    this.createdAt = article.getCreatedAt().toString();
+    this.lastUpdate = article.getLastUpdate().toString();
   }
 
   public ArticleResponse setId(Long id) {
@@ -66,21 +66,21 @@ public class ArticleResponse {
     return this;
   }
 
-  public LocalDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
   public ArticleResponse setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
+    this.createdAt = createdAt.toString();
     return this;
   }
 
-  public LocalDateTime getLastUpdate() {
+  public String getLastUpdate() {
     return lastUpdate;
   }
 
   public ArticleResponse setLastUpdate(LocalDateTime lastUpdate) {
-    this.lastUpdate = lastUpdate;
+    this.lastUpdate = lastUpdate.toString();
     return this;
   }
 }

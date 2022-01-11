@@ -8,7 +8,8 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorCode {
   USER_NOT_FOUND("001", BAD_REQUEST, "User {0} not found"),
-  UNKNOWN("002", INTERNAL_SERVER_ERROR, "Unknown error: {0}");
+  ARTICLE_NOT_FOUND("002", BAD_REQUEST, "Article {0} not found"),
+  UNKNOWN("999", INTERNAL_SERVER_ERROR, "Unknown error: {0}");
 
   private String code;
 

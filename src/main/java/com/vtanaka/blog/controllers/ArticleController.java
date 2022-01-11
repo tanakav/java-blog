@@ -3,6 +3,7 @@ package com.vtanaka.blog.controllers;
 import static com.vtanaka.blog.configs.ApplicationConstants.ArticleResource.ARTICLE_ID_PARAM;
 import static com.vtanaka.blog.configs.ApplicationConstants.ArticleResource.ARTICLE_RESOURCE;
 import static com.vtanaka.blog.configs.ApplicationConstants.ArticleResource.ARTICLE_URI;
+import static com.vtanaka.blog.configs.ApplicationConstants.AuthorResource.PARAM_AUTHOR_ID;
 
 import com.vtanaka.blog.controllers.docs.ArticleApi;
 import com.vtanaka.blog.controllers.requests.ArticleRequest;
@@ -37,13 +38,13 @@ public class ArticleController implements ArticleApi {
   @Override
   @GetMapping
   public List<ArticleResponse> findAllByAuthor(
-      @RequestParam(name = ARTICLE_ID_PARAM) Long authorId) {
-    return null;
+      @RequestParam(name = PARAM_AUTHOR_ID) Long authorId) {
+    return articleService.findAllByAuthor(authorId);
   }
 
   @Override
   @GetMapping(ARTICLE_URI)
   public ArticleResponse findById(@PathVariable(ARTICLE_ID_PARAM) Long id) {
-    return null;
+    return articleService.findById(id);
   }
 }
